@@ -13,63 +13,11 @@
 
 
  /*
+ Thanks to:
   The Complete Guide to the WordPress Settings API - https://code.tutsplus.com/series/the-complete-guide-to-the-wordpress-settings-api--cms-624
   Making an Admin Options Page With the WordPress Settings API - https://wpshout.com/making-an-admin-options-page-with-the-wordpress-settings-api/
  */
 
-
-
-
-
-/*
-
-
-
-
-###
-SOURCE TAXONOMY TO TIDY UP
-
-
-###
-MAP GCLOUD ENTITY TYPES TO TAXONOMIES
-
-The type of the entity. For most entity types, the associated metadata is a Wikipedia URL (wikipedia_url) and
-Knowledge Graph MID (mid). The table below lists the associated fields for entities that have different
-metadata.
-
-- 'UNKNOWN'         = 'tag'
-- 'PERSON'          = 'person'
-- 'LOCATION'        = 'place'
-- 'ORGANIZATION'    = 'company'
-- 'EVENT'           = 'event'
-- 'WORK_OF_ART'     = 'artwork'
-- 'CONSUMER_GOOD'   = 'product'
-- 'OTHER'           = 'tag'
-
-- 'PHONE_NUMBER'    = 'phone_number'
-- 'ADDRESS'         = 'address'
-- 'DATE'            = 'date'
-- 'NUMBER'          = 'number'
-- 'PRICE'           = 'price'
-
-
-###
-ENRICH FROM KNOWLEDGE GRAPH & WIKIPEDIA?
-
-
-###
-1. CLICK TO TIDY UP
-vs
-2. ALWAYS TIDYING UP
-
-
-
-###
-IF TERM EXISTS IN A TAXONOMY, SET IT THERE, DON'T TIDY UP, DON'T SET ELSEWHERE
-
-
-
-*/
 
 
 
