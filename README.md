@@ -30,6 +30,8 @@ Term Tidier is a WordPress plugin. Upload the `cxt-term-tidier` folder to `wp-co
 
 Term Tidier settings must be set in the WordPress admin, via the page at "Settings > Context Term Tidier".
 
+![Settings: Main settings](https://i.imgur.com/CkP9nQA.png)
+
 ### Google Cloud API key
 
 Term Tidier is powered by Google Cloud Natural Language. You need an account. Follow the instructions in Settings to create an account, then copy and paste your API key in to Settings.
@@ -40,11 +42,13 @@ Google Cloud currently provides up to 5,000 monthly API calls for free. That mea
 
 Select the taxonomy you want to examine and tidy up in the dropdown.
 
+![Settings: Mapping settings](https://i.imgur.com/zhEUGnq.png)
+
 ### Re-assign terms
 
 Select a target taxonomy to which terms to be of a particular entity type (UNKNOWN, PERSON, LOCATION, ORGANIZATION, EVENT, WORK_OF_ART, CONSUMER_GOOD or OTHER) will be moved
 
-### Usage
+## Usage
 
 Use Term Tidier from the WordPress Tools menu (Tools > Context Term Tidier).
 
