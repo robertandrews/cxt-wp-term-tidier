@@ -57,3 +57,7 @@ The plugin page confirms your settings as set in Settings, displaying the taxono
 Click the "Tidy Terms" button to execute the operation.
 
 Term Tidier will cycle through each term, seeking an "entity" determination and re-assigning any terms possible.
+
+## Contribute
+
+This is my first real plugin and my first code released to GitHub. Corrections and enhancements are welcome.
