@@ -33,7 +33,6 @@
 
 
 
-
 /* ------------------------------------------------------------------------ *
  * 1. Navigation to your settings page.
  * ------------------------------------------------------------------------ */
@@ -810,75 +809,79 @@ add_action('wp_ajax_cxt_get_results', 'cxt_process_ajax');
 
 
 
+    /* ########################################################################## *
+     *
+     *   DETERMINE ENTITY, via native wp_remote_post call
+     *   cf. https://github.com/robertandrews/cxt-term-tidier/issues/1
+     *   was via cURL, https://wordpress.stackexchange.com/questions/349271/how-to-convert-this-curl-to-wp-remote
+     *
+    /* ########################################################################## */
+
+    function get_entity_type(
+        $text_to_analyse,           // passed string to be handed to GClouD NLP
+        $entity = 'type'            // part of each "entities" result to return
+    ) {
+
+        // Google Cloud API key
+        $options = get_option( 'cxt_settings' );
+        $google_nlp_api = $options['cxt_gcloud'];
 
 
 
+        // Call the API endpoint, with API key
+        $url = 'https://language.googleapis.com/v1/documents:analyzeEntities?key='.$google_nlp_api;
+
+        // Request payload
+        $payload = '{
+          "document":{
+            "type":"PLAIN_TEXT",
+            "content":"'.$text_to_analyse.'"
+          },
+          "encodingType":"UTF8"
+        }';
 
 
-/* ########################################################################## *
- *
- *   EXECUTION
- *
-/* ########################################################################## */
+        // Call Goolge NLP API via wp_remote_post();
+        // cf. https://wordpress.stackexchange.com/questions/349271/how-to-convert-this-curl-to-wp-remote?noredirect=1#comment510738_349271
+        //
+        $result_full = wp_remote_post(
+            $url,
+            array(
+                'method'      => 'POST',
+                'timeout'     => 45,
+                'redirection' => 5,
+                'httpversion' => '1.0',
+                'blocking'    => true,
+                'headers'     => array(
+                    'Content-Type' => 'application/json; charset=utf-8'
+                ),
+                'body'      =>  $payload,                       // Payload, text to analyse
+                'data_format' => 'body'
+            )
+        );
 
-function get_entity_type(
-    $text_to_analyse,           // passed string to be handed to GClouD NLP
-    $entity = 'type'            // part of each "entities" result to return
-) {
+        // Just the "body" bit
+        $result_entities = $result_full['body'];
 
-    // Google Cloud API key
-    $options = get_option( 'cxt_settings' );
-    $google_nlp_api = $options['cxt_gcloud'];
+        // Store result in array
+        $arr = json_decode($result_entities, true);
 
-    // Supply data payload in JSON format
-    $data = '{
-      "document":{
-        "type":"PLAIN_TEXT",
-        "content":"'.$text_to_analyse.'"
-      },
-      "encodingType":"UTF8"
-    }';
-    $payload = $data;
+        // Pluck out the first value from the response object
+        $ent_val = $arr['entities'][0][$entity];
 
-    // Call the API endpoint, with API key
-    $url = 'https://language.googleapis.com/v1/documents:analyzeEntities?key='.$google_nlp_api;
+        return $ent_val;
 
-    // Prepare to get results using cURL
-    $ch = curl_init($url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLINFO_HEADER_OUT, true);
-    curl_setopt($ch, CURLOPT_POST, true);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
-    // Set HTTP Header for POST request
-    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-            'Content-Type: application/json',
-            'Content-Length: ' . strlen($payload))
-    );
+        // List of possible entities: https://cloud.google.com/natural-language/docs/reference/rest/v1/Entity#Type
+        // UNKNOWN
+        // PERSON
+        // LOCATION
+        // ORGANIZATION
+        // EVENT
+        // WORK_OF_ART
+        // CONSUMER_GOOD
+        // OTHER
 
-    // Submit the POST request
-    $result = curl_exec($ch);
-
-    // Store result in array
-    $arr = json_decode($result, true);
-
-    // Close cURL session handle
-    curl_close($ch);
-
-    // Pluck out the first value from the response object
-    $ent_val = $arr['entities'][0][$entity];
-
-    return $ent_val;
-    // List of possible entities: https://cloud.google.com/natural-language/docs/reference/rest/v1/Entity#Type
-    // UNKNOWN
-    // PERSON
-    // LOCATION
-    // ORGANIZATION
-    // EVENT
-    // WORK_OF_ART
-    // CONSUMER_GOOD
-    // OTHER
-
-}
+    }
 
 
 
