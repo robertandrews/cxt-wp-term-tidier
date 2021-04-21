@@ -220,52 +220,59 @@ function cxt_gcloud_render(  ) {
 
 	$options = get_option( 'cxt_settings' );
 	?>
-	<input type='text' name='cxt_settings[cxt_gcloud]' value='<?php echo $options['cxt_gcloud']; ?>'>
-    <p class="description">
-        Term Tidier is powered by <a href="https://cloud.google.com/natural-language/">Google Cloud Natural Language</a>. You need an account.
-    </p>
-    <ul>
-        <li>Create a <a href="https://cloud.google.com/free/">free Google Cloud account</a>.</li>
-        <li>In your <a href="https://console.cloud.google.com">Google Cloud Console</a>, create a new project.</li>
-        <li>In your Project view, go to Menu > APIs & Services > Credentials.</li>
-        <li>Click the "Create credentials" button, then "API key". In the "API key created" dialog box, copy the newly-created API key and paste it here.</li>
-    </ul>
-    <p class="description">
-        This allows Term Tidier to process <a href="https://cloud.google.com/natural-language/#natural-language-api-pricing">up to 5,000 terms per month</a> for free.
-    </p>
-	<?php
+<input type='text' name='cxt_settings[cxt_gcloud]' value='<?php echo $options['cxt_gcloud']; ?>'>
+<p class="description">
+    Term Tidier is powered by <a href="https://cloud.google.com/natural-language/">Google Cloud Natural Language</a>.
+    You need an account.
+</p>
+<ul>
+    <li>Create a <a href="https://cloud.google.com/free/">free Google Cloud account</a>.</li>
+    <li>In your <a href="https://console.cloud.google.com">Google Cloud Console</a>, create a new project.</li>
+    <li>In your Project view, go to Menu > APIs & Services > Credentials.</li>
+    <li>Click the "Create credentials" button, then "API key". In the "API key created" dialog box, copy the
+        newly-created API key and paste it here.</li>
+</ul>
+<p class="description">
+    This allows Term Tidier to process <a
+        href="https://cloud.google.com/natural-language/#natural-language-api-pricing">up to 5,000 terms per month</a>
+    for free.
+</p>
+<?php
 
 }
 
 function cxt_sourcetax(  ) {
     $options = get_option( 'cxt_settings' );
 	?>
-	<select name='cxt_settings[cxt_sourcetax]'>
-        <?php
+<select name='cxt_settings[cxt_sourcetax]'>
+    <?php
         $taxonomies = get_taxonomies();
         foreach ( $taxonomies as $taxonomy ) {
             $taxonomy_details = get_taxonomy($taxonomy); ?>
-            <option value='<?php echo $taxonomy; ?>' <?php selected( $options['cxt_sourcetax'], $taxonomy ); ?>><?php echo $taxonomy_details->label; ?></option>
-        <?php } ?>
-	</select>
-    <p class="description">
-        Term Tidier will examine and reclassify terms in this taxonomy.
-    </p>
-	<?php
+    <option value='<?php echo $taxonomy; ?>' <?php selected( $options['cxt_sourcetax'], $taxonomy ); ?>>
+        <?php echo $taxonomy_details->label; ?></option>
+    <?php } ?>
+</select>
+<p class="description">
+    Term Tidier will examine and reclassify terms in this taxonomy.
+</p>
+<?php
 
 }
 /*
 function cxt_alwayson(  ) {
     $options = get_option( 'cxt_settings' );
 	?>
-    <input type='checkbox' name='cxt_settings[cxt_alwayson]' <?php checked( $options['cxt_alwayson'], 1 ); ?> value='1'>
-    <p class="description">
-        If checked, Term Tidier will re-assign all newly-added 'Source Taxonomy' terms in the above taxonomy, as they are created, with the below rules.
-    </p>
-    <p class="description">
-        If unchecked, you can run manually, on all 'Source Taxonomy' terms at once, from <a href="/wp-admin/tools.php?page=magic-terms">the plugin page</a>.
-    </p>
-	<?php
+<input type='checkbox' name='cxt_settings[cxt_alwayson]' <?php checked( $options['cxt_alwayson'], 1 ); ?> value='1'>
+<p class="description">
+    If checked, Term Tidier will re-assign all newly-added 'Source Taxonomy' terms in the above taxonomy, as they are
+    created, with the below rules.
+</p>
+<p class="description">
+    If unchecked, you can run manually, on all 'Source Taxonomy' terms at once, from <a
+        href="/wp-admin/tools.php?page=magic-terms">the plugin page</a>.
+</p>
+<?php
 
 }
 */
@@ -277,21 +284,22 @@ function cxt_goo_unknown_render(  ) {
 
 	$options = get_option( 'cxt_settings' );
 	?>
-    <select name='cxt_settings[cxt_goo_unknown]'>
-        <option value='' <?php selected( $options['cxt_goo_unknown'], $taxonomy ); ?>>None</option>
-        <?php
+<select name='cxt_settings[cxt_goo_unknown]'>
+    <option value='' <?php selected( $options['cxt_goo_unknown'], $taxonomy ); ?>>None</option>
+    <?php
         $taxonomies = get_taxonomies();
         foreach ( $taxonomies as $taxonomy ) {
             $taxonomy_details = get_taxonomy($taxonomy); ?>
-            <option value='<?php echo $taxonomy; ?>' <?php selected( $options['cxt_goo_unknown'], $taxonomy ); ?>><?php echo $taxonomy_details->label; ?></option>
-        <?php } ?>
-	</select>
-    <!--
+    <option value='<?php echo $taxonomy; ?>' <?php selected( $options['cxt_goo_unknown'], $taxonomy ); ?>>
+        <?php echo $taxonomy_details->label; ?></option>
+    <?php } ?>
+</select>
+<!--
     <p class="description">
         Setting this to the same as "Source taxonomy" above means terms which Term Tidier could not re-classify will be left in their original taxonomy.
     </p>
     -->
-	<?php
+<?php
 
 }
 
@@ -299,16 +307,17 @@ function cxt_goo_person_render(  ) {
 
 	$options = get_option( 'cxt_settings' );
 	?>
-    <select name='cxt_settings[cxt_goo_person]'>
-        <option value='' <?php selected( $options['cxt_goo_person'], $taxonomy ); ?>>None</option>
-        <?php
+<select name='cxt_settings[cxt_goo_person]'>
+    <option value='' <?php selected( $options['cxt_goo_person'], $taxonomy ); ?>>None</option>
+    <?php
         $taxonomies = get_taxonomies();
         foreach ( $taxonomies as $taxonomy ) {
             $taxonomy_details = get_taxonomy($taxonomy); ?>
-            <option value='<?php echo $taxonomy; ?>' <?php selected( $options['cxt_goo_person'], $taxonomy ); ?>><?php echo $taxonomy_details->label; ?></option>
-        <?php } ?>
-	</select>
-	<?php
+    <option value='<?php echo $taxonomy; ?>' <?php selected( $options['cxt_goo_person'], $taxonomy ); ?>>
+        <?php echo $taxonomy_details->label; ?></option>
+    <?php } ?>
+</select>
+<?php
 
 }
 
@@ -316,16 +325,17 @@ function cxt_goo_location_render(  ) {
 
 	$options = get_option( 'cxt_settings' );
 	?>
-    <select name='cxt_settings[cxt_goo_location]'>
-        <option value='' <?php selected( $options['cxt_goo_location'], $taxonomy ); ?>>None</option>
-        <?php
+<select name='cxt_settings[cxt_goo_location]'>
+    <option value='' <?php selected( $options['cxt_goo_location'], $taxonomy ); ?>>None</option>
+    <?php
         $taxonomies = get_taxonomies();
         foreach ( $taxonomies as $taxonomy ) {
             $taxonomy_details = get_taxonomy($taxonomy); ?>
-            <option value='<?php echo $taxonomy; ?>' <?php selected( $options['cxt_goo_location'], $taxonomy ); ?>><?php echo $taxonomy_details->label; ?></option>
-        <?php } ?>
-	</select>
-	<?php
+    <option value='<?php echo $taxonomy; ?>' <?php selected( $options['cxt_goo_location'], $taxonomy ); ?>>
+        <?php echo $taxonomy_details->label; ?></option>
+    <?php } ?>
+</select>
+<?php
 
 }
 
@@ -333,16 +343,17 @@ function cxt_goo_organization_render(  ) {
 
 	$options = get_option( 'cxt_settings' );
 	?>
-    <select name='cxt_settings[cxt_goo_organization]'>
-        <option value='' <?php selected( $options['cxt_goo_organization'], $taxonomy ); ?>>None</option>
-        <?php
+<select name='cxt_settings[cxt_goo_organization]'>
+    <option value='' <?php selected( $options['cxt_goo_organization'], $taxonomy ); ?>>None</option>
+    <?php
         $taxonomies = get_taxonomies();
         foreach ( $taxonomies as $taxonomy ) {
             $taxonomy_details = get_taxonomy($taxonomy); ?>
-            <option value='<?php echo $taxonomy; ?>' <?php selected( $options['cxt_goo_organization'], $taxonomy ); ?>><?php echo $taxonomy_details->label; ?></option>
-        <?php } ?>
-	</select>
-	<?php
+    <option value='<?php echo $taxonomy; ?>' <?php selected( $options['cxt_goo_organization'], $taxonomy ); ?>>
+        <?php echo $taxonomy_details->label; ?></option>
+    <?php } ?>
+</select>
+<?php
 
 }
 
@@ -350,16 +361,17 @@ function cxt_goo_event_render(  ) {
 
 	$options = get_option( 'cxt_settings' );
 	?>
-    <select name='cxt_settings[cxt_goo_event]'>
-        <option value='' <?php selected( $options['cxt_goo_event'], $taxonomy ); ?>>None</option>
-        <?php
+<select name='cxt_settings[cxt_goo_event]'>
+    <option value='' <?php selected( $options['cxt_goo_event'], $taxonomy ); ?>>None</option>
+    <?php
         $taxonomies = get_taxonomies();
         foreach ( $taxonomies as $taxonomy ) {
             $taxonomy_details = get_taxonomy($taxonomy); ?>
-            <option value='<?php echo $taxonomy; ?>' <?php selected( $options['cxt_goo_event'], $taxonomy ); ?>><?php echo $taxonomy_details->label; ?></option>
-        <?php } ?>
-	</select>
-	<?php
+    <option value='<?php echo $taxonomy; ?>' <?php selected( $options['cxt_goo_event'], $taxonomy ); ?>>
+        <?php echo $taxonomy_details->label; ?></option>
+    <?php } ?>
+</select>
+<?php
 
 }
 
@@ -367,16 +379,17 @@ function cxt_goo_workofart_render(  ) {
 
 	$options = get_option( 'cxt_settings' );
 	?>
-    <select name='cxt_settings[cxt_goo_workofart]'>
-        <option value='' <?php selected( $options['cxt_goo_workofart'], $taxonomy ); ?>>None</option>
-        <?php
+<select name='cxt_settings[cxt_goo_workofart]'>
+    <option value='' <?php selected( $options['cxt_goo_workofart'], $taxonomy ); ?>>None</option>
+    <?php
         $taxonomies = get_taxonomies();
         foreach ( $taxonomies as $taxonomy ) {
             $taxonomy_details = get_taxonomy($taxonomy); ?>
-            <option value='<?php echo $taxonomy; ?>' <?php selected( $options['cxt_goo_workofart'], $taxonomy ); ?>><?php echo $taxonomy_details->label; ?></option>
-        <?php } ?>
-	</select>
-	<?php
+    <option value='<?php echo $taxonomy; ?>' <?php selected( $options['cxt_goo_workofart'], $taxonomy ); ?>>
+        <?php echo $taxonomy_details->label; ?></option>
+    <?php } ?>
+</select>
+<?php
 
 }
 
@@ -384,16 +397,17 @@ function cxt_goo_consumergood_render(  ) {
 
 	$options = get_option( 'cxt_settings' );
 	?>
-    <select name='cxt_settings[cxt_goo_consumergood]'>
-        <option value='' <?php selected( $options['cxt_goo_consumergood'], $taxonomy ); ?>>None</option>
-        <?php
+<select name='cxt_settings[cxt_goo_consumergood]'>
+    <option value='' <?php selected( $options['cxt_goo_consumergood'], $taxonomy ); ?>>None</option>
+    <?php
         $taxonomies = get_taxonomies();
         foreach ( $taxonomies as $taxonomy ) {
             $taxonomy_details = get_taxonomy($taxonomy); ?>
-            <option value='<?php echo $taxonomy; ?>' <?php selected( $options['cxt_goo_consumergood'], $taxonomy ); ?>><?php echo $taxonomy_details->label; ?></option>
-        <?php } ?>
-	</select>
-	<?php
+    <option value='<?php echo $taxonomy; ?>' <?php selected( $options['cxt_goo_consumergood'], $taxonomy ); ?>>
+        <?php echo $taxonomy_details->label; ?></option>
+    <?php } ?>
+</select>
+<?php
 
 }
 
@@ -401,16 +415,17 @@ function cxt_goo_other_render(  ) {
 
 	$options = get_option( 'cxt_settings' );
 	?>
-    <select name='cxt_settings[cxt_goo_other]'>
-        <option value='' <?php selected( $options['cxt_goo_other'], $taxonomy ); ?>>None</option>
-        <?php
+<select name='cxt_settings[cxt_goo_other]'>
+    <option value='' <?php selected( $options['cxt_goo_other'], $taxonomy ); ?>>None</option>
+    <?php
         $taxonomies = get_taxonomies();
         foreach ( $taxonomies as $taxonomy ) {
             $taxonomy_details = get_taxonomy($taxonomy); ?>
-            <option value='<?php echo $taxonomy; ?>' <?php selected( $options['cxt_goo_other'], $taxonomy ); ?>><?php echo $taxonomy_details->label; ?></option>
-        <?php } ?>
-	</select>
-	<?php
+    <option value='<?php echo $taxonomy; ?>' <?php selected( $options['cxt_goo_other'], $taxonomy ); ?>>
+        <?php echo $taxonomy_details->label; ?></option>
+    <?php } ?>
+</select>
+<?php
 
 }
 
@@ -458,30 +473,30 @@ function cxt_options_page(  ) {
 
 		?>
 
-        <div class="wrap">
+<div class="wrap">
 
-    		<form action='options.php' method='post'>
+    <form action='options.php' method='post'>
 
-    			<h1>Context Term Tidier Settings</h1>
+        <h1>Context Term Tidier Settings</h1>
 
-                <!--
+        <!--
                 <p>Many  WordPress installs suffer from cramming hundreds or thousands of varied taxonomy terms in to a limited number of ill-suited, all-purpose taxonomies (eg. the default "categories" and "tags").</p>
 				<p>These are better off split in to dedicated taxonomies. For example, storing "Bill Gates" and "Microsoft" terms in "tags" is not optimal, because one is a <em>person</em> whilst the other is a <em>company</em>.<p>
                 <p>There is no straightforward way to split up existing taxonomies more granularly in this way, except for  labour-intensive and manual, technical effort. So, many WordPress installs continue to suffer from not having created granular taxonomies intentionally at the outset.</p>
                 <p>Term Tidier tidies up messy taxonomies like these automatically. It uses natural language processing and knowledge graph technology to determine the real <a href="https://gcloud.readthedocs.io/en/latest/_modules/google/cloud/language/entity.html#EntityType">entity type</a> of existing terms, then re-assigns them each to a more appropriate, alternative taxonomy.</p>
                 -->
 
-    			<?php
+        <?php
     			settings_fields( 'pluginPage' );
     			do_settings_sections( 'pluginPage' );
     			submit_button();
     			?>
 
-    		</form>
+    </form>
 
-        </div>
+</div>
 
-		<?php
+<?php
 
 }
 
@@ -567,55 +582,67 @@ function cxt_plugin_page(  ) {
 
 		?>
 
-        <div class="wrap">
+<div class="wrap">
 
-    			<h1>Context Term Tidier Plugin</h1>
+    <h1>Context Term Tidier Plugin</h1>
 
-                <div class="notice notice-info is-dismissible">
-                    <p>Source taxonomy: '<?php echo $source_taxonomy_obj->labels->singular_name; ?>' ('<?php echo $source_taxonomy_slug; ?>') set in Context Terms Tidier Settings [<a href="/wp-admin/options-general.php?page=magic-terms-settings">Change</a>] (<?php echo number_format(wp_count_terms( $source_taxonomy_slug )); ?> terms).</p>
-                </div>
+    <div class="notice notice-info is-dismissible">
+        <p>Source taxonomy: '<?php echo $source_taxonomy_obj->labels->singular_name; ?>'
+            ('<?php echo $source_taxonomy_slug; ?>') set in Context Terms Tidier Settings [<a
+                href="/wp-admin/options-general.php?page=magic-terms-settings">Change</a>]
+            (<?php echo number_format(wp_count_terms( $source_taxonomy_slug )); ?> terms).</p>
+    </div>
 
-                <p><!--This is the plugin page, cxt_plugin_page. Stuff goes here.--></p>
+    <p>
+        <!--This is the plugin page, cxt_plugin_page. Stuff goes here.-->
+    </p>
 
 
 
-    			<?php
+    <?php
     			// settings_fields( 'pluginPage' );
     			// do_settings_sections( 'pluginPage' );
     			// submit_button();
     			?>
 
-                <!-- https://stackoverflow.com/a/32340299/1375163 -->
+    <!-- https://stackoverflow.com/a/32340299/1375163 -->
 
-                <!--
+    <!--
                 <form method="POST" action="<?php echo admin_url( 'admin.php' ); ?>">
                     <input type="hidden" name="action" value="magic-terms" />
                     <input type="submit" value="Do it!" class="button button-primary" />
                 </form>
                 -->
 
-                <p>Clicking will attempt to determine what each term in the '<?php echo $source_taxonomy_obj->labels->singular_name; ?>' taxonomy may really be. If this can be determined, the term will be re-assigned to the taxonomies you specified in <a href="/wp-admin/options-general.php?page=magic-terms-settings">Context Terms Tidier Settings</a>. This will use <?php echo number_format(wp_count_terms( $source_taxonomy_slug )); ?> API calls from your Google Cloud account.</p>
+    <p>Clicking will attempt to determine what each term in the
+        '<?php echo $source_taxonomy_obj->labels->singular_name; ?>' taxonomy may really be. If this can be determined,
+        the term will be re-assigned to the taxonomies you specified in <a
+            href="/wp-admin/options-general.php?page=magic-terms-settings">Context Terms Tidier Settings</a>. This will
+        use <?php echo number_format(wp_count_terms( $source_taxonomy_slug )); ?> API calls from your Google Cloud
+        account.</p>
 
-                <!-- https://www.youtube.com/watch?v=7pO-FYVZv94 -->
-                <form id="cxt-form" action="" method="POST">
-                    <div>
-                        <input type="submit" name="cxt-submit" id="cxt-submit" value="Tidy <?php echo number_format(wp_count_terms( $source_taxonomy_slug )); ?> Terms" class="button button-primary" />
-                        <img src="/wp-admin/images/wpspin_light.gif" class="waiting" id="cxt-loading" style="display:none">
-                    </div>
-                </form>
+    <!-- https://www.youtube.com/watch?v=7pO-FYVZv94 -->
+    <form id="cxt-form" action="" method="POST">
+        <div>
+            <input type="submit" name="cxt-submit" id="cxt-submit"
+                value="Tidy <?php echo number_format(wp_count_terms( $source_taxonomy_slug )); ?> Terms"
+                class="button button-primary" />
+            <img src="/wp-admin/images/wpspin_light.gif" class="waiting" id="cxt-loading" style="display:none">
+        </div>
+    </form>
 
-                <p></p>
+    <p></p>
 
-                <table id="cxt-old" class="widefat fixed">
-                    <thead>
-                        <tr>
-                            <th class="row-title"><?php echo $source_taxonomy_obj->labels->singular_name; ?> name</th>
-                            <th>Entity</th>
-                            <th>Target taxonomy</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
+    <table id="cxt-old" class="widefat fixed">
+        <thead>
+            <tr>
+                <th class="row-title"><?php echo $source_taxonomy_obj->labels->singular_name; ?> name</th>
+                <th>Entity</th>
+                <th>Target taxonomy</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
                         $i = 0;
                         foreach ( $terms as $term ) {
                             // Limiter (since this uses credit card-linked API calls)
@@ -630,24 +657,24 @@ function cxt_plugin_page(  ) {
                                 }
 
                                 ?>
-                                <tr<?php echo $row_html; ?>>
-                                    <td><?php echo $term->name; ?></td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                </tr>
-                            <?php
+            <tr<?php echo $row_html; ?>>
+                <td><?php echo $term->name; ?></td>
+                <td>-</td>
+                <td>-</td>
+                </tr>
+                <?php
                             // }
                             $i++;
                         } ?>
 
-                    </tbody>
-                </table>
+        </tbody>
+    </table>
 
 
-                <div id="cxt-results">
-                </div>
+    <div id="cxt-results">
+    </div>
 
-                <!--
+    <!--
                 <script type="text/javascript">
                     $.ajax({
                         url:"ajax.php",
@@ -670,9 +697,9 @@ function cxt_plugin_page(  ) {
                 -->
 
 
-        </div>
+</div>
 
-		<?php
+<?php
 
 }
 
@@ -728,16 +755,16 @@ function cxt_process_ajax() {
     ) );
     ?>
 
-    <table class="widefat fixed">
-        <thead>
-            <tr>
-                <th class="row-title"><?php echo $source_taxonomy_obj->labels->singular_name; ?> name</th>
-                <th>Entity</th>
-                <th>New taxonomy</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
+<table class="widefat fixed">
+    <thead>
+        <tr>
+            <th class="row-title"><?php echo $source_taxonomy_obj->labels->singular_name; ?> name</th>
+            <th>Entity</th>
+            <th>New taxonomy</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
             $i = 0;
             foreach ( $terms as $term ) {
                 // Limiter (since this uses credit card-linked API calls)
@@ -756,11 +783,11 @@ function cxt_process_ajax() {
                     }
 
                     ?>
-                    <tr<?php echo $row_html; ?>>
-                        <td><?php echo $term->name; ?></td>
-                        <td><?php echo $entity_name; ?></td>
-                        <td>
-                            <?php
+        <tr<?php echo $row_html; ?>>
+            <td><?php echo $term->name; ?></td>
+            <td><?php echo $entity_name; ?></td>
+            <td>
+                <?php
                             // If any Target taxonomy for this Entity set in Settings
                             if ($options[$entity_field]) {
                                 // Get the taxonomy object
@@ -779,20 +806,20 @@ function cxt_process_ajax() {
                             // FIX TERM COUNT BLAH? - wp update term count?
 
                             ?>
-                        </td>
-                    </tr>
-                <?php
+            </td>
+            </tr>
+            <?php
                 }
                 $i++;
             } ?>
 
-        </tbody>
-    </table>
+    </tbody>
+</table>
 
 
 
 
-    <?php
+<?php
 
     die();
 }
