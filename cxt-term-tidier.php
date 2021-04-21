@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Plugin Name: Context Term Tidier
+ * Plugin Name: Context Term Tidier Yes
  * Plugin URI: http://www.contexthq.com
  * Description: Uses Google Cloud Natural Language / Text Classification to classify a string
  * Version: 1.0.0
