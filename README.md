@@ -1,4 +1,4 @@
-# Context Term Tidier
+# Context WP Term Tidier
 
 Many WordPress installs suffer from cramming hundreds or thousands of varied taxonomy terms in to a limited number of ill-suited, all-purpose taxonomies (eg. the default "categories" and "tags").
 
